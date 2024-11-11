@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CIT Hostels - Today's Special</title>
+  <style>
+    /* Basic Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f4f4f9;
+      color: #333;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    .header {
+      width: 100%;
+      background-color: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+      margin-bottom: 40px;
+    }
+
+    .college-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .college-header img {
+      width: 60px;
+      height: auto;
+    }
+
+    .college-header strong {
+      font-size: 1.5em;
+      color: #003366;
+    }
+
+    .menu {
+      background-color: #fff;
+      padding: 30px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      margin-top: 30px;
+      width: 100%;
+      max-width: 800px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 1.1em;
+    }
+
+    .menu h2 {
+      color: #003366;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .menu p {
+      font-size: 1.2em;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .food-options {
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    .food-options label {
+      font-size: 1.2em;
+      margin-right: 15px;
+      display: block;
+    }
+
+    .submit-btn {
+      padding: 12px 24px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.2em;
+      border-radius: 5px;
+      margin-top: 15px;
+    }
+
+    /* E-Token Box Styles */
+    .token-box {
+      margin-top: 30px;
+      padding: 30px;
+      background-color: #28a745;
+      color: white;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      display: none; /* Hide initially */
+    }
+
+    .token-box h3 {
+      margin-bottom: 15px;
+      font-size: 1.6em;
+    }
+
+    .token-box p {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+    }
+
+    .print-btn {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1em;
+      border-radius: 5px;
+      margin-top: 15px;
+    }
+
+    .college-logo-token {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .college-logo-token img {
+      width: 40px;
+      height: auto;
+    }
+
+    .college-logo-token strong {
+      font-size: 1.4em;
+      color: white;
+    }
+
+    /* Print Styling */
+    @media print {
+      /* Hide everything except the token box when printing */
+      body * {
+        visibility: hidden;
+      }
+
+      .token-box, .token-box * {
+        visibility: visible;
+      }
+
+      .token-box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <div class="header">
+    CIT Hostels - Today's Special Menu
+  </div>
+
+  <!-- College Logo and Name -->
+  <div class="college-header">
+    <img src="C:\Users\aarth\OneDrive\Desktop\Hostel Website\Coimbatore_Institute_of_Technology_logo.png" alt="CIT Logo"> <!-- Replace with actual logo -->
+    <strong>Coimbatore Institute of Technology</strong>
+  </div>
+  
+  <h2>Welcome to CIT Hostels</h2>
+  <p id="welcome-message">Hello, <span id="student-name">Student Name</span>! Your Register Number: <span id="register-number">XXXXXXX</span></p>
+
+  <!-- Today's Menu Section -->
+  <div class="menu">
+    <h2>Today's Special Menu</h2>
+    <p><strong>Title:</strong> CIT Hostels</p>
+    <p id="special-menu-title"><strong>Today's Special:</strong> </p>
+    
+    <!-- Form for food selection -->
+    <form id="food-form">
+      <div class="food-options">
+        <!-- Food options will be dynamically inserted here -->
+      </div>
+
+      <button type="submit" class="submit-btn">Get E-Token</button>
+    </form>
+
+    <!-- E-Token Box -->
+    <div class="token-box" id="token-box">
+      <div class="college-logo-token">
+        <img src="C:\Users\aarth\OneDrive\Desktop\Hostel Website\Coimbatore_Institute_of_Technology_logo.png" alt="CIT Logo"> <!-- Replace with actual logo -->
+        <strong>Coimbatore Institute of Technology</strong>
+      </div>
+      <h3>Your E-Token</h3>
+      <p>Welcome to CIT Hostels!!</p>
+      <p><strong>Name:</strong> <span id="token-name"></span></p>
+      <p><strong>Register Number:</strong> <span id="token-register-number"></span></p>
+      <p><strong>Food Selected:</strong> <span id="token-food"></span></p>
+      <p><strong>Date:</strong> <span id="token-date"></span></p>
+      <button class="print-btn" onclick="window.print()">Print E-Token</button>
+    </div>
+  </div>
+
+  <script>
+    // Displaying the name and register number passed as query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+    const registerNumber = urlParams.get('register-number');
+
+    // Fill the welcome message with the name and register number
+    if (name && registerNumber) {
+      document.getElementById('student-name').textContent = name;
+      document.getElementById('register-number').textContent = registerNumber;
+    }
+
+    // Function to get today's special menu items based on the day
+    function getTodaysSpecialMenu() {
+      const today = new Date().getDay(); // Get the current day (0 = Sunday, 6 = Saturday)
+      const menuTitle = document.getElementById('special-menu-title');
+      const foodOptionsContainer = document.querySelector('.food-options');
+      let foodOptions = [];
+      
+      if (today === 1 || today === 3 || today === 5) { // Monday, Wednesday, Friday
+        menuTitle.innerHTML = "<strong>Today's Special Menu :</strong> Omelette, Egg Curry, Fried Rice, Mutton Curry, and Fruit Salad";
+        foodOptions = [
+          'Omelette',
+          'Egg Curry',
+          'Fried Rice',
+          'Mutton Curry',
+          'Fruit Salad'
+        ];
+      } else if (today === 0 || today === 2 || today === 4) { // Tuesday, Thursday, Saturday
+        menuTitle.innerHTML = "<strong>Today's Special:</strong> Butter Naan, Chicken Gravy, and Gulab Jamun";
+        foodOptions = [
+          'Butter Naan',
+          'Chicken Gravy',
+          'Gulab Jamun'
+        ];
+      } else { // Sunday (Optional: You can leave this as a default menu or have a different set for Sunday)
+        menuTitle.innerHTML = "<strong>Today's Special:</strong> Special Sunday Meal";
+        foodOptions = [
+          'Pasta',
+          'Salad',
+          'Ice Cream'
+        ];
+      }
+
+      // Dynamically create food option buttons
+      foodOptionsContainer.innerHTML = ''; // Clear previous options
+      foodOptions.forEach(function(food) {
+        const label = document.createElement('label');
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'food';
+        input.value = food;
+        label.appendChild(input);
+        label.appendChild(document.createTextNode(food));
+        foodOptionsContainer.appendChild(label);
+      });
+    }
+
+    // E-Token Generation Function
+    function generateEToken(foodChoice) {
+      const token = `ET-${Math.random().toString(36).substr(2, 9)}-${foodChoice};`
+      return token;
+    }
+
+    // Handle form submission
+    const form = document.getElementById('food-form');
+    const tokenBox = document.getElementById('token-box');
+    const tokenName = document.getElementById('token-name');
+    const tokenRegisterNumber = document.getElementById('token-register-number');
+    const tokenFood = document.getElementById('token-food');
+    const tokenDate = document.getElementById('token-date');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const selectedFood = document.querySelector('input[name="food"]:checked');
+      
+      if (selectedFood) {
+        // Fill in the token box
+        tokenName.textContent = name || 'N/A';
+        tokenRegisterNumber.textContent = registerNumber || 'N/A';
+        tokenFood.textContent = selectedFood.value;
+        tokenDate.textContent = new Date().toLocaleDateString();
+
+        // Show the token box
+        tokenBox.style.display = 'block';
+      } else {
+        alert('Please select a food item before submitting.');
+      }
+    });
+
+    // Initialize the menu based on the current day
+    getTodaysSpecialMenu();
+  </script>
+
+</body>
+</html>

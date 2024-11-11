@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coimbatore Institute of Technology</title>
+  <!-- Link to FontAwesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Resetting default margins */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    /* Header Styling */
+    .header {
+      width: 100%;
+      background-color: #003366;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.5em;
+      position: relative;
+    }
+
+    .header img {
+      margin-top: 10px;
+      width: 100px;
+      height: auto;
+    }
+
+    /* Main Content */
+    .content {
+      margin: 50px 0;
+      font-size: 2em;
+      color: #003366; /* Matches the header color */
+      text-align: center;
+    }
+
+    /* Background Image */
+    .background {
+      background-image: url('./img.jpg'); /* Replace with the actual image URL or path */
+      background-size: cover;
+      background-position: center;
+      width: 100%;
+      padding: 50px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      display: flex;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      gap: 20px;
+    }
+
+    .navbar .dropdown {
+      position: relative;
+    }
+
+    .navbar a {
+      color: white;
+      font-size: 1.0em;
+      text-decoration: none;
+      padding: 10px;
+      display: block;
+    }
+
+    /* Dropdown Styling */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #0066cc;
+      min-width: 150px;
+      top: 35px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      z-index: 1;
+    }
+
+    .dropdown-content a {
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      display: block;
+      white-space: nowrap;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #004080;
+    }
+
+    /* Show dropdown on hover */
+    .navbar .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Login Box Styling */
+    .login-box {
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      border-radius: 8px;
+      width: 300px;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .login-box input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    .login-box button {
+      width: 85%;
+      padding: 10px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2em;
+    }
+
+    .login-box button:hover {
+      background-color: #0059b3;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <div class="header">
+    Coimbatore Institute of Technology
+    <br>
+    <img src="C:\Users\aarth\OneDrive\Desktop\Hostel Website\Coimbatore_Institute_of_Technology_logo.png" alt="CIT Logo">
+  </div>
+
+  <!-- Background Section with Welcome Text -->
+  <div class="background">
+    <div class="content">
+      Welcome to CIT Hostels
+    </div>
+  </div>
+
+  <!-- Navbar Section with Dropdowns -->
+  <div class="navbar">
+    <!-- Home Dropdown -->
+    <div class="dropdown">
+      <a href="#"><i class="fas fa-home"></i> Home</a>
+      <div class="dropdown-content">
+        <a href="#home">Home</a>
+      </div>
+    </div>
+
+    <!-- About Dropdown -->
+    <div class="dropdown">
+      <a href="#"><i class="fas fa-info-circle"></i> About</a>
+      <div class="dropdown-content">
+        <a href="#mission">Mission</a>
+        <a href="#vision">Vision</a>
+        <a href="#history">History</a>
+      </div>
+    </div>
+
+    <!-- Contact Dropdown -->
+    <div class="dropdown">
+      <a href="#"><i class="fas fa-phone-alt"></i> Contact</a>
+      <div class="dropdown-content">
+        <a href="#location">Location</a>
+        <a href="#email">Email</a>
+        <a href="#phone">Phone</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login Box -->
+  <div class="login-box">
+    <h2>Login</h2>
+    <form id="loginForm" action="./components/hostels.html" method="GET">
+      <input type="text" id="name" name="name" placeholder="Name" required>
+      <input type="text" id="register-number" name="register-number" placeholder="Register Number" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  
+  <script>
+    // Function to get query parameters from the URL
+    function getQueryParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const name = urlParams.get('name');
+      const registerNumber = urlParams.get('register-number');
+      return { name, registerNumber };
+    }
+
+    // Function to pre-fill the form fields
+    function preFillForm() {
+      const { name, registerNumber } = getQueryParams();
+
+      if (name) {
+        document.getElementById('name').value = name;
+      }
+
+      if (registerNumber) {
+        document.getElementById('register-number').value = registerNumber;
+      }
+    }
+
+    // Pre-fill the form when the page loads
+    window.onload = preFillForm;
+  </script>
+
+</body>
+  </html>
